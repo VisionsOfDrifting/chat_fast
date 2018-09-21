@@ -1,0 +1,18 @@
+{
+  "name": "chat_fast",
+  "version": "1.0.0",
+  "description": "Realtime chat app using sockets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.17",
+    "nodemon": "^1.18.4",
+    "socket.io": "^2.1.1"
+  }
+}
