@@ -23,6 +23,8 @@ class Register extends Component {
     usersRef: firebase.database().ref("users")
   };
 
+  // This is a good start, but error checking can be more robust
+
   // You can structure this differently like in a previous app to display different error messages
   isFormValid = () => {
     let errors = [];
@@ -100,7 +102,8 @@ class Register extends Component {
             .then(() => {
               this.saveUser(createdUser).then(() => {
                 console.log("user saved");
-                this.setState({ loading: false });
+                // You'll probably want to redirect on submit
+                // this.setState({ loading: false });
               });
             })
             .catch(err => {
@@ -140,12 +143,45 @@ class Register extends Component {
 
     return (
       <Grid textAlign="center" verticalAlign="middle" className="app">
+        {/* Eventually you can add some css to make it responsive. Flexbox would do well here. */}
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" icon color="orange" textAlign="center">
-            <Icon name="puzzle piece" color="orange" /> Register for Chat Fast
+          <Header as="h1" icon color="black" textAlign="center">
+            <Icon
+              name="envelope"
+              color="orange"
+              style={{ display: "inline", marginLeft: "0px" }}
+            />
+            <Icon
+              name="forward"
+              color="orange"
+              style={{
+                display: "inline",
+                marginLeft: "30px",
+                marginRight: "5px"
+              }}
+            />
+            <Icon
+              name="shipping fast"
+              color="orange"
+              style={{ display: "inline", marginLeft: "10px" }}
+            />
+            <br />
+            <Icon
+              name="lightning"
+              color="yellow"
+              style={{ display: "inline", marginRight: "90px" }}
+            />
+            {/* Eventually you could make a logo */}
+            Chat Fast
+            <Icon
+              name="lightning"
+              color="yellow"
+              style={{ display: "inline", marginLeft: "90px" }}
+            />
           </Header>
           <Form onSubmit={this.handleSubmit} size="large">
             <Segment stacked>
+              <h2>Register</h2>
               <Form.Input
                 fluid
                 name="username"
@@ -195,7 +231,7 @@ class Register extends Component {
                 disabled={loading}
                 className={loading ? "loading" : ""}
                 fluid
-                color="orange"
+                color="green"
                 size="large"
               >
                 Submit
@@ -208,8 +244,14 @@ class Register extends Component {
               {this.displayErrors(errors)}
             </Message>
           )}
-          <Message>
-            Already a user? <Link to="/login">Login</Link>
+          <Message style={{ display: "flex" }}>
+            <div style={{ flexGrow: "1", flexShrink: "1", flexBasis: "0" }}>
+              Already a user? <Link to="/login">Login</Link>
+            </div>
+            <div style={{ flexGrow: "1", flexShrink: "1", flexBasis: "0" }}>
+              {/* You'll have to make a guest.js in auth */}
+              Want to try it out? <Link to="/guest">Guest</Link>
+            </div>
           </Message>
         </Grid.Column>
       </Grid>
